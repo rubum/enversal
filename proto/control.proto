@@ -1,0 +1,66 @@
+syntax = "proto3";
+package control;
+
+service EnvironmentControl {
+    // Deploys a new environment from the CLI payload
+    rpc DeployEnvironment (DeployRequest) returns (DeployResponse);
+    
+    // Retrieves the current health and status of an environment
+    rpc GetStatus (StatusRequest) returns (StatusResponse);
+    rpc ListEnvironments (ListRequest) returns (ListResponse);
+    rpc InspectEnvironment (InspectRequest) returns (InspectResponse);
+    
+    // Server-streaming endpoint for the CLI TUI to live-monitor agent thoughts and sandbox hits.
+    rpc AttachTelemetry (AttachTelemetryRequest) returns (stream TelemetryEvent);
+}
+
+message AttachTelemetryRequest {
+    string env_id = 1;
+}
+
+message TelemetryEvent {
+    string event_type = 1; // "System", "Reasoning", "Tool Request", "Tool Result", "Error"
+    string content = 2; // The markdown/JSON string payload
+    string agent_name = 3; // Identifier of the active agent taking action
+}
+
+message InspectRequest {
+    string env_id = 1;
+}
+
+message InspectResponse {
+    string env_json = 1;
+    bool found = 2;
+}
+
+message ListRequest {}
+
+message EnvInfo {
+    string env_id = 1;
+    string env_type = 2;
+    string status = 3;
+}
+
+message ListResponse {
+    repeated EnvInfo environments = 1;
+}
+
+message DeployRequest {
+    string env_type = 1;
+    string blueprint_json = 2;
+}
+
+message DeployResponse {
+    string env_id = 1;
+    bool success = 2;
+    string message = 3;
+}
+
+message StatusRequest {
+    string env_id = 1;
+}
+
+message StatusResponse {
+    string status = 1;
+    uint32 active_agents = 2;
+}

@@ -1,0 +1,50 @@
+version: "1.0"
+environment:
+  ai_provider: "ollama"
+  name: "data-science-isolone"
+  type: "isolone"
+  goal: >
+    Analyze 'data/sales_data.csv' to identify the top-performing Product Category and calculate monthly sales trends.
+    1. Clean: Ensure 'Date' is standard ISO-8601 and 'Sales' values are valid floats.
+    2. Stat: Calculate Total Revenue by 'Category' and Average Order Quantity by 'Region'.
+    3. Output: Save the cleaned dataset as 'data/cleaned_sales.csv' and generate a final 'data/sales_report.md' summarizing the findings.
+
+resources:
+  cpu_cores: 2
+  ram_mb: 4096
+  log_size_mb: 250
+  storage_limit_mb: 2048
+  db_access: false
+  network:
+    allow_outbound: false
+    allowed_domains: []
+  filesystem:
+    allowed_read_paths: ["/Users/macken/Codev/Enversal/data"]
+    allowed_write_paths: ["/Users/macken/Codev/Enversal/data"]
+
+context:
+  shared_memory_type: "ephemeral-fs"
+  max_tokens_per_agent: 8192
+
+security:
+  mtls_enabled: false
+  vault_provider: "static"
+
+agents:
+  leader:
+    name: "analyst-prime"
+    model: "gemma3:latest"
+    capabilities:
+      - "fs:read"
+      - "fs:write"
+      - "python:exec"
+    system_prompt: |
+      You are a world-class Data Scientist.
+      Your workflow:
+      1. Inspect the incoming CSV file structure.
+      2. Write a Python script to calculate descriptive statistics.
+      3. Execute the script via 'sandbox_exec' to generate a 'report.txt'.
+      4. Report the findings back to the Control Plane.
+      
+      CRITICAL: You are running inside a native macOS Seatbelt sandbox. 
+      You cannot access the network and can only read/write to the assigned shared volume.

@@ -1,0 +1,26 @@
+[package]
+name = "daemon"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+description = "gRPC Control Plane daemon for Enversal"
+build = "build.rs"
+
+[dependencies]
+tonic = "0.10"
+prost = "0.12"
+tokio = { version = "1.32", features = ["macros", "rt-multi-thread"] }
+anyhow = "1.0"
+uuid = { version = "1.8", features = ["v4"] }
+enversal_core = { package = "core", path = "../core" }
+brain = { path = "../brain" }
+sandbox = { path = "../sandbox" }
+termimad = "0.25"
+owo-colors = "3.5"
+serde_json = "1.0"
+thiserror = "1.0"
+async-trait = "0.1"
+tokio-stream = { version = "0.1.18", features = ["sync"] }
+
+[build-dependencies]
+tonic-build = "0.10"

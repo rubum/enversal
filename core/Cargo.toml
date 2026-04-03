@@ -1,0 +1,10 @@
+[package]
+name = "core"
+version.workspace = true
+edition.workspace = true
+authors.workspace = true
+description = "Core traits and abstractions for Enversal AI Environment"
+
+[dependencies]
+uuid = { version = "1.8.0", features = ["v4", "serde"] }
+serde = { version = "1.0", features = ["derive"] }

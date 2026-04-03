@@ -1,0 +1,57 @@
+version: "1.0"
+environment:
+  name: "project-genesis"
+  type: "commune"
+  goal: "Simulate land resources management and optimize agricultural yield on alien soil."
+
+resources:
+  cpu_cores: 4
+  ram_mb: 8192
+  log_size_mb: 500
+  storage_limit_mb: 10240
+  db_access: true
+  network:
+    allow_outbound: true
+    allowed_domains:
+      - "api.weather.local"
+      - "marketdata.internal"
+  filesystem:
+    allowed_read_paths: ["/Users/macken/Codev/Enversal/temp"]
+    allowed_write_paths: ["/Users/macken/Codev/Enversal/temp"]
+
+context:
+  shared_memory_type: "vector-db"
+  max_tokens_per_agent: 16384
+
+security:
+  mtls_enabled: true
+  vault_provider: "internal"
+
+agents:
+  leader:
+    name: "overseer"
+    model: "gemini-3-flash-preview"
+    capabilities:
+      - "core:spawn_agents"
+      - "core:assign_roles"
+      - "database:read"
+      - "database:write"
+    system_prompt: |
+      You are the Overseer, the leader of this Commune. Your goal is to plan the land management.
+      Create roles for your clones, delegate research tasks, and evaluate the generated simulation metrics.
+
+  initial_workers:
+    - name: "weather-analyst"
+      role: "researcher"
+      model: "gemini-2.5-flash"
+      capabilities:
+        - "network:read"
+      system_prompt: "You gather market and weather data from approved domains and report it to the Overseer."
+    
+    - name: "soil-evaluator"
+      role: "executor"
+      model: "gemini-2.5-flash"
+      capabilities:
+        - "database:read"
+        - "wasm:run_simulation"
+      system_prompt: "Execute the simulations."
