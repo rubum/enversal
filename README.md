@@ -76,4 +76,4 @@ For deep technical details, refer to the `docs/` folder:
 - [Project Specification](docs/enversal_spec.md)
 
 ---
-Developed by [Macken](https://github.com/macken) | Built with Rust 🦀
+Developed by [Kenmburu](https://github.com/rubum) | Built with Rust 🦀
