@@ -17,7 +17,6 @@ This is the essence of Enversal: a system that starts from isolated, singular ag
 ## The Two Worlds of Enversal
 
 ### 1. Isolone: The Hermit's Sandbox
-![Isolone Vector](/Users/macken/Codev/Enversal/assets/enversal_isolone_vector_1774617803604.png)
 
 An Isolone is a strictly isolated environment built for a *single* agent. It's the perfect place for a solitary task. The agent inside operates under strict local resource constraints, with access only to the tools it was explicitly given, and focused entirely on a specific goal.
 - **Total Isolation**: By default, it cannot reach out to the outside universe unless explicitly permitted.
@@ -25,7 +24,6 @@ An Isolone is a strictly isolated environment built for a *single* agent. It's t
 - **Fluid Boundaries**: An Isolone agent can decide to "join" an existing Commune and become part of a larger society. Conversely, an agent tired of community life in a Commune can "exit" and form its own isolated Isolone.
 
 ### 2. Commune: The Thriving Society
-![Commune Vector](/Users/macken/Codev/Enversal/assets/enversal_commune_vector_1774617944539.png)
 
 A Commune is a shared, deeply connected environment where multiple agents live and work together. It's built for collaboration.
 - **The Leader**: Every Commune starts with a "default agent" who steps up as the leader—the planner and builder. This leader sets the agenda, clones new agents into existence, assigns them roles, and orchestrates the grand plan.
