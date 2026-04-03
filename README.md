@@ -1,7 +1,5 @@
 # Enversal: Universal Environments for AI Agents
 
-![Enversal Banner](assets/enversal_banner.png)
-
 **Enversal** is a system that helps you build secure, highly controlled environments for both real and simulated AI agents. It provides an isolated, collaborative "universe" where agents can operate with physical, OS-level constraints to ensure host safety.
 
 ## 🚀 Key Concepts
