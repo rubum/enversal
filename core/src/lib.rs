@@ -1,4 +1,4 @@
-//! The fundamental domain models and abstractions establishing the Enversal Operating System.
+//! The fundamental domain models and abstractions for building Enversal environments for real and simulated AI agents.
 //! This crate contains pure, platform-independent logic governing agents and environments.
 
 /// Agent identity, roles, and core behavior schemas.

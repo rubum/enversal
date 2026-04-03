@@ -1,6 +1,6 @@
 # Enversal: Technical Architecture
 
-Enversal is a high-fidelity, zero-trust Cognitive Operating System. Unlike traditional orchestrators that assume software behaves securely, Enversal was engineered on the presumption that AI Agents are unpredictable, heavily-capable entities that require physical, OS-level constraints to operate safely on a host machine.
+Enversal is a system for building secure, highly controlled environments for real and simulated AI agents. Unlike traditional orchestrators that assume software behaves securely, Enversal was engineered on the presumption that AI Agents are unpredictable, heavily-capable entities that require physical, OS-level constraints to operate safely on a host machine.
 
 This document details the actual mechanics of the `v1.0` Enversal Rust workspace.
 
@@ -27,7 +27,7 @@ The kernel-level execution abstraction (`Executor`).
 ### `enversal-daemon`
 The `tokio`-based gRPC Control Plane.
 - Orchestrates the asynchronous Cognitive Loops.
-- Tracks process IDs (PIDs) and `termimad` high-fidelity markdown streaming.
+- Tracks process IDs (PIDs) and formats rich markdown streaming via `termimad`.
 - Manages the `RuntimeRegistry` for autonomous language provisioning.
 
 ---
